@@ -44,7 +44,7 @@
 >
 >通过基于RoI的编码，框架传输数据的大小显著降低了。
 
-<img src="C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221201163112673.png" alt="image-20221201163112673" style="zoom: 67%;" />
+<img src=".\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221201163112673.png" alt="image-20221201163112673" style="zoom: 67%;" />
 
 (2)本文：
 
@@ -315,13 +315,13 @@
 >
 >当我们将输入图像分割成𝑘xk块时，并，使用supernet内部不同的子网络独立地处理它们，来自supernet的𝑘×𝑘输出需要连接在一起。
 >
->为了连接它们，每个输出的空间大小被设置为![image-20221202160440974](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160440974.png)
+>为了连接它们，每个输出的空间大小被设置为![image-20221202160440974](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160440974.png)
 >
->![image-20221202160457166](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160457166.png)是（𝑃+1)层输入的空间尺寸
+>![image-20221202160457166](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160457166.png)是（𝑃+1)层输入的空间尺寸
 >
->给定![image-20221202160915023](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160915023.png)，supernet中输入和输出的中间空间维度可有Eq.2决定。
+>给定![image-20221202160915023](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160915023.png)，supernet中输入和输出的中间空间维度可有Eq.2决定。
 >
->因此，我们可以得到每个块的空间尺寸，标记为![image-20221202161120161](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202161120161.png)。进一步，我们可以确定原始输入图像每一个块的坐标 𝑥1,: = 0, 𝑥2,: = 𝑤𝑖𝑛 − Δ𝑥𝑖𝑛, 𝑥𝑖,: = 𝑥𝑖−1,: + 𝑤𝑖𝑛 − Δ𝑥𝑖𝑛 (3 ≤ 𝑖 ≤ 𝑘); 𝑦:,1 = 0, 𝑦:,2 = ℎ𝑖𝑛 − Δ𝑦𝑖𝑛, 𝑦:,𝑗 = 𝑦:,𝑗−1 + ℎ𝑖𝑛 − Δ𝑦𝑖𝑛 (3 ≤ 𝑗 ≤ 𝑘);
+>因此，我们可以得到每个块的空间尺寸，标记为![image-20221202161120161](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202161120161.png)。进一步，我们可以确定原始输入图像每一个块的坐标 𝑥1,: = 0, 𝑥2,: = 𝑤𝑖𝑛 − Δ𝑥𝑖𝑛, 𝑥𝑖,: = 𝑥𝑖−1,: + 𝑤𝑖𝑛 − Δ𝑥𝑖𝑛 (3 ≤ 𝑖 ≤ 𝑘); 𝑦:,1 = 0, 𝑦:,2 = ℎ𝑖𝑛 − Δ𝑦𝑖𝑛, 𝑦:,𝑗 = 𝑦:,𝑗−1 + ℎ𝑖𝑛 − Δ𝑦𝑖𝑛 (3 ≤ 𝑗 ≤ 𝑘);
 >
 >xi为第𝑖行块的𝑥坐标，𝑦：，𝑗为第𝑗列上块的𝑦坐标。
 >
@@ -335,11 +335,11 @@
 
 >在ARAC supernet中，每个块通过一个压缩级别独立处理。我们将（i,j）块的压缩级别记作ci,j
 >
->对于supernet 中的卷积层，操作次数（乘积）是<img src="C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162245453.png" alt="image-20221202162245453" style="zoom:80%;" />。
+>对于supernet 中的卷积层，操作次数（乘积）是<img src=".\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162245453.png" alt="image-20221202162245453" style="zoom:80%;" />。
 >
->对于supernet中的最大池化层，操作（比较）数为<img src="C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162512376.png" alt="image-20221202162512376" style="zoom:80%;" />
+>对于supernet中的最大池化层，操作（比较）数为<img src=".\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162512376.png" alt="image-20221202162512376" style="zoom:80%;" />
 >
->因此，使用{𝑐𝑖，𝑗}的supernet的操作总数可描述为：![image-20221202162636619](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162636619.png)
+>因此，使用{𝑐𝑖，𝑗}的supernet的操作总数可描述为：![image-20221202162636619](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162636619.png)
 >
 >
 
@@ -349,13 +349,13 @@
 >
 >因此，我们通过通道切片形成了一个𝑅模型的集合。我们将有C1压缩等级模型的每一层的权重即为Wl;对于在这个集合中拥有其他压缩等级Ci(2<i<N)的模型，它们在第𝑙层中的权重是
 >
->![image-20221202163452612](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202163452612.png)![image-20221202163505539](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202163505539.png).这样，个𝑅模型集合中的权重数等于压缩级为𝑐1的模型，并且其他的模型则可以通过对通道维数上的权值进行切片来直接得到。
+>![image-20221202163452612](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202163452612.png)![image-20221202163505539](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202163505539.png).这样，个𝑅模型集合中的权重数等于压缩级为𝑐1的模型，并且其他的模型则可以通过对通道维数上的权值进行切片来直接得到。
 >
->为了训练𝑅（压缩）模型的集成，我们使用了一个类似于IEB的集成促进方案。我们与IEB之间的区别在于，不是训练随机选择模型，而是，我们训练压缩级别范围从 C2 到 cR−1 的模型，来预测由压缩级别为 C1 的模型生成的 soft label ![image-20221202164417313](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164417313.png)
+>为了训练𝑅（压缩）模型的集成，我们使用了一个类似于IEB的集成促进方案。我们与IEB之间的区别在于，不是训练随机选择模型，而是，我们训练压缩级别范围从 C2 到 cR−1 的模型，来预测由压缩级别为 C1 的模型生成的 soft label ![image-20221202164417313](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164417313.png)
 >
->具有C1压缩级别的模型来预测真实的标签。![image-20221202164728367](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164728367.png)
+>具有C1压缩级别的模型来预测真实的标签。![image-20221202164728367](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164728367.png)
 >
->具有CR压缩等级的模型，被训练来预测所有其他模型的概率积累，![image-20221202164951517](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164951517.png)
+>具有CR压缩等级的模型，被训练来预测所有其他模型的概率积累，![image-20221202164951517](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164951517.png)
 >
 >
 >
@@ -384,7 +384,7 @@
 >4.4.1标签规则：
 >我们将原始图像的标签称为A标签，将分割图像压缩等级的标签作为C-标签。
 >
->给定压缩等级![image-20221202172540474](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202172540474.png)，我们在训练集中用C标签来标记所有的分割图像。
+>给定压缩等级![image-20221202172540474](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202172540474.png)，我们在训练集中用C标签来标记所有的分割图像。
 >
 >对于一个图像的分割图像，标签规则是：
 >
@@ -392,4 +392,50 @@
 >
 >如果最后的输出没有和A标签匹配，将相应的图像标记为c1，否则，我们提升他的压缩等级为C3.我们重复*match-label-raise procedure until we reach compression level CR
 >
+>图6显示了给定四个压缩级别的标记过程的一个例子。
+
+
+
+>4.4.2 CGG体系结构
+>给定一个输入图像X,CGG生成𝑘×𝑘one-hot 𝑅长度向量{v}𝑘×k. 向量中的一个元素代表了一个压缩级别Ci(1 ≤ *𝑖* ≤ *𝑅*)。CGG的最终输出为![image-20221202222054848](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202222054848.png)CGG在一个batch中处理X个kxk的分割图像。将一个分割的图像记为x,我们有一个编码器![image-20221202222347851](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202222347851.png),以及一个特征映射函数![image-20221202222423251](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202222423251.png)，对于编码器![image-20221202222448028](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202222448028.png)。我们利用一个卷积层和一个最大池化层来整合空间信息。我们利用一个全连通的层来进行特征映射函数![image-20221202222616599](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202222616599.png)，
 >
+>压缩级别的选择是通过将arg max应用于映射函数![image-20221202222616599](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202222616599.png)的输出向量
+
+
+
+>*4.4.3 CGG Training:*
+>
+>我们使用标记规则对训练数据集中的分割图像进行标记。我们将压缩级损失函数定义为：![image-20221202223318175](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202223318175.png)其中𝑥是一个分割图像。𝐶𝐺𝐺（𝑥)是𝑥的softmax输出。𝑐𝑔𝑡（𝑥)是一个独热编码的压缩级标签x.图像识别损失为
+>
+>![image-20221202223548584](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202223548584.png)
+>
+>![image-20221202223606862](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202223606862.png)是来自整个模型的 softmax output 
+>
+>![image-20221202223702691](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202223702691.png)真实标签的独热码。
+>
+>我们通过图像识别损失和压缩级损失来联合优化CGG：![image-20221202223843156](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202223843156.png)
+>
+>其中，𝛼控制了这两个损失的影响
+>
+>![image-20221202224011035](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202224011035.png)的反向传播给CGG的参数是通过gumbel softmax technique来实现的。
+>
+>带有损失函数，CGG被训练来分析分割图像的内容 并且为它选择一个压缩级别。
+>
+>CGG的训练确保了整个模型的正确输出(the first part in Eq. 4) ，同时匹配压缩级别的标签。
+>
+>拥有一个更高的a，CGG倾向于分配具有更高压缩水平的块，以更显著地降低计算成本。
+>
+>拥有一个更低的a,CGG 倾向于分配具有更低压缩水平的块，来获取更高的准确率。本文设置a=0.7
+
+
+
+### 5 CNN INFERENCE W/ SUPERNET(CNN推理)
+
+>在ARCR supernet中一个压缩导向门CGG选择选择合适的压缩级别给图像的块。
+>
+>从CGG中选择压缩级别保证了以最小的操作次数来实现可忽略的精度损失
+>
+>
+
+
+
