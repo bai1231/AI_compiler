@@ -271,11 +271,11 @@
 >
 >因此，给定一个压缩级别Ci,前（𝑃−1）中每一层的输出通道数为：
 >
->![image-20221202143608984](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202143608984.png)
+>![image-20221202143608984](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202143608984.png)
 >
->![image-20221202144014886](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202144014886.png)原始的输出通道个数，
+>![image-20221202144014886](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202144014886.png)原始的输出通道个数，
 >
->![image-20221202144051178](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202144051178.png)压缩后的通道个数，
+>![image-20221202144051178](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202144051178.png)压缩后的通道个数，
 >
 >ci=0 d=D 代表没有剪枝,ci=1 d=0 代表输出被全部剪枝了
 >
@@ -299,13 +299,13 @@
 >
 >对于图层𝑙，输出和输入的空间维度之间的关系（高度和宽度）是由图层的配置决定的
 >
->![image-20221202152517006](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202152517006.png)
+>![image-20221202152517006](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202152517006.png)
 >
 >
 >
 >b:是二进制的,是否这个块在原始图像的边缘，
 >
-> layer l:卷积层   b=1 否则b=0
+>layer l:卷积层   b=1 否则b=0
 >
 >Sl :步长
 >
@@ -313,7 +313,83 @@
 >
 >Al: padding
 >
->当我们将输入图像分割成𝑘xk块时，并，使用supernet内部不同的子网络独立地处理它们，来自supernet的𝑘×𝑘输出需要连接在一起。s
+>当我们将输入图像分割成𝑘xk块时，并，使用supernet内部不同的子网络独立地处理它们，来自supernet的𝑘×𝑘输出需要连接在一起。
 >
->为了连接它们，每个输出的空间大小被设置为
+>为了连接它们，每个输出的空间大小被设置为![image-20221202160440974](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160440974.png)
+>
+>![image-20221202160457166](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160457166.png)是（𝑃+1)层输入的空间尺寸
+>
+>给定![image-20221202160915023](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202160915023.png)，supernet中输入和输出的中间空间维度可有Eq.2决定。
+>
+>因此，我们可以得到每个块的空间尺寸，标记为![image-20221202161120161](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202161120161.png)。进一步，我们可以确定原始输入图像每一个块的坐标 𝑥1,: = 0, 𝑥2,: = 𝑤𝑖𝑛 − Δ𝑥𝑖𝑛, 𝑥𝑖,: = 𝑥𝑖−1,: + 𝑤𝑖𝑛 − Δ𝑥𝑖𝑛 (3 ≤ 𝑖 ≤ 𝑘); 𝑦:,1 = 0, 𝑦:,2 = ℎ𝑖𝑛 − Δ𝑦𝑖𝑛, 𝑦:,𝑗 = 𝑦:,𝑗−1 + ℎ𝑖𝑛 − Δ𝑦𝑖𝑛 (3 ≤ 𝑗 ≤ 𝑘);
+>
+>xi为第𝑖行块的𝑥坐标，𝑦：，𝑗为第𝑗列上块的𝑦坐标。
+>
+>Δ*𝑥**𝑖𝑛* = (*𝑘* · *𝑤**𝑖𝑛* −*𝑊**𝑖𝑛*)/(*𝑘* − 1), and
+>
+>Δ*𝑦**𝑖𝑛* = (*𝑘* ·*ℎ**𝑖𝑛* −*𝐻**𝑖𝑛*)/(*𝑘* −1). 
+>
+>注意：原点位于原始输入数据的左上角。
 
+
+
+>在ARAC supernet中，每个块通过一个压缩级别独立处理。我们将（i,j）块的压缩级别记作ci,j
+>
+>对于supernet 中的卷积层，操作次数（乘积）是<img src="C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162245453.png" alt="image-20221202162245453" style="zoom:80%;" />。
+>
+>对于supernet中的最大池化层，操作（比较）数为<img src="C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162512376.png" alt="image-20221202162512376" style="zoom:80%;" />
+>
+>因此，使用{𝑐𝑖，𝑗}的supernet的操作总数可描述为：![image-20221202162636619](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202162636619.png)
+>
+>
+
+#### **4.3 Training of Supernet**
+
+>对有N层的CNN模型，我们离线训练R压缩模型使用压缩等级Ci.一种简单的方法是单独训练𝑅压缩模型。然而，以这种方式获得的模型不共享权重，并且在边缘设备上消耗了大量的内存。
+>
+>因此，我们通过通道切片形成了一个𝑅模型的集合。我们将有C1压缩等级模型的每一层的权重即为Wl;对于在这个集合中拥有其他压缩等级Ci(2<i<N)的模型，它们在第𝑙层中的权重是
+>
+>![image-20221202163452612](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202163452612.png)![image-20221202163505539](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202163505539.png).这样，个𝑅模型集合中的权重数等于压缩级为𝑐1的模型，并且其他的模型则可以通过对通道维数上的权值进行切片来直接得到。
+>
+>为了训练𝑅（压缩）模型的集成，我们使用了一个类似于IEB的集成促进方案。我们与IEB之间的区别在于，不是训练随机选择模型，而是，我们训练压缩级别范围从 C2 到 cR−1 的模型，来预测由压缩级别为 C1 的模型生成的 soft label ![image-20221202164417313](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164417313.png)
+>
+>具有C1压缩级别的模型来预测真实的标签。![image-20221202164728367](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164728367.png)
+>
+>具有CR压缩等级的模型，被训练来预测所有其他模型的概率积累，![image-20221202164951517](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202164951517.png)
+>
+>
+>
+>类似于训练一个缩减的神经网络，我们在每次训练迭代中一起训练𝑅模型的集合：
+>
+>我们分别计算上述为所有模型定义的损失，并将它们的反向传播梯度累积在一起；然后，我们更新了集合中的权重。
+>
+>注意：训练过程中这些模型的输入是 训练数据集中的图像没有被分割，
+>
+>给定训练好的𝑅模型集合，拥有P层的supernet可以通过取集合中每个模型的前𝑃层得到。
+>
+>后面的（𝑁−𝑃）层与原始CNN模型相同。
+
+#### **4.4 Compression Guiding Gate**
+
+>在ARACsupernet 的入口处，我们设计了一个压缩导向门 (CGG)。一个CGG为每个图像块选择压缩级别。特别是，CGG将分割后的图像块作为输入，并为它们生成压缩级别。
+>
+>CGG可以看作是一个分类模型，它将分割后的图像块分为不同的压缩级别。但是，在训练集中的图像被标记为原始的应用程序，而且我们没有针对分割图像的压缩级标签。
+>
+>因此，我们提出了标签生成规则来生成压缩等级的标签，用来分割训练集的图像。
+>
+>通过生成的压缩级标签，我们可以用监督学习技术来训练一个CGG
+
+
+
+>4.4.1标签规则：
+>我们将原始图像的标签称为A标签，将分割图像压缩等级的标签作为C-标签。
+>
+>给定压缩等级![image-20221202172540474](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202172540474.png)，我们在训练集中用C标签来标记所有的分割图像。
+>
+>对于一个图像的分割图像，标签规则是：
+>
+>首先，所有的分割图像都由压缩等级为c1的子网络处理。如果他的最终输出没有和A标签匹配，然后所有的分割图形被标记为C1，否则我们分摊提升每个分割图像的压缩等级为C2;
+>
+>如果最后的输出没有和A标签匹配，将相应的图像标记为c1，否则，我们提升他的压缩等级为C3.我们重复*match-label-raise procedure until we reach compression level CR
+>
+>
