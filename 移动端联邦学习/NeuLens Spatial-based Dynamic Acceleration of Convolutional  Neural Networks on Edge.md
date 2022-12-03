@@ -443,31 +443,39 @@
 
 #### **5.1 Problem Definition**
 
-> 如§4所展示的，一个ARAC supernet 包含了就有R压缩级别的前P层CNN模型，一个输入图像被分为了kxk块，并且，本supernet中的微型网络独立处理。因此，对于具有ARAC supernet 的CNN推理，我们可以动态控制：（1）supernet中的层数，![image-20221202234337279](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234337279.png)（2)块数![image-20221202234353981](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234353981.png)（3)块的压缩级别![image-20221202234427075](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234427075.png)。我们将kxk块矩阵的压缩级别记为![image-20221202234532961](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234532961.png)以及C是
+> 如§4所展示的，一个ARAC supernet 包含了就有R压缩级别的前P层CNN模型，一个输入图像被分为了kxk块，并且，本supernet中的微型网络独立处理。因此，对于具有ARAC supernet 的CNN推理，我们可以动态控制：
 >
->![image-20221202234610250](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234610250.png)的候选值。一般来说，CNN推理的优化集中于三种类型的性能：：(1)精度（𝐴𝑐𝑐）、(2)延迟（𝑇）和(3)内存消耗（𝑀)。在本文中，我们关注于在给定的延迟和内存约束下![image-20221202234759538](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234759538.png)![image-20221202234810142](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234810142.png)最大化精度
+> （1）supernet中的层数，![image-20221202234337279](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234337279.png)
 >
->![image-20221202234831341](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234831341.png)
+> （2)块数![image-20221202234353981](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234353981.png)
+>
+> （3)块的压缩级别![image-20221202234427075](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234427075.png)。我们将kxk块矩阵的压缩级别记为![image-20221202234532961](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234532961.png)以及C是
+>
+> ![image-20221202234610250](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234610250.png)的候选值。
+>
+> 一般来说，CNN推理的优化集中于三种类型的性能：：(1)精度（𝐴𝑐𝑐）、(2)延迟（𝑇）和(3)内存消耗（𝑀)。在本文中，我们关注于在给定的延迟和内存约束下![image-20221202234759538](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234759538.png)![image-20221202234810142](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234810142.png)最大化精度
+>
+> ![image-20221202234831341](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202234831341.png)
 
 
 
 >尽管，更高的压缩级别会降低精度 (Eq. 5),但是，获得更低的延迟/内存消耗；在调整压缩级别中存在权衡，因为高压缩级别会导致低精度，尽管满足了延迟和内存约束。
 >
->对于输入图像的块，ARAC supernet 利用不同的压缩级别来处理他们，换句话说，给定输入图像C压缩级别和kxk块，对于图像中所有的块来说由![image-20221202235343707](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202235343707.png)的组合的压缩选择。这可能是一个非常大的数字。因此，一个有效的等式解决Eq5to7是必要的，而不是详尽的搜索。
+>对于输入图像的块，ARAC supernet 利用不同的压缩级别来处理他们，换句话说，给定输入图像C压缩级别和kxk块，对于图像中所有的块来说由![image-20221202235343707](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221202235343707.png)的组合的压缩选择。这可能是一个非常大的数字。因此，一个有效的等式解决Eq5to7是必要的，而不是详尽的搜索。
 
 
 
 #### **5.2 Compression-Level Gear**
 
->对于一个图像的𝑘×𝑘块，CGG（4.4）为它们选择压缩级别。我们将CGG选择的𝑘×𝑘块的压缩级别表示为![image-20221203000903099](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203000903099.png)
+>对于一个图像的𝑘×𝑘块，CGG（4.4）为它们选择压缩级别。我们将CGG选择的𝑘×𝑘块的压缩级别表示为![image-20221203000903099](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203000903099.png)
 >
->推理延迟![image-20221203000940522](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203000940522.png)和和内存消耗![image-20221203001001366](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203001001366.png)是是由延迟和内存消耗预测器来估计的。
+>推理延迟![image-20221203000940522](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203000940522.png)和和内存消耗![image-20221203001001366](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203001001366.png)是是由延迟和内存消耗预测器来估计的。
 >
 >当延迟/内存约束时(Eq。6和7)被违反了，我们使用压缩级别齿轮(CLG)调整𝑘×𝑘块的压缩级别，通过自适应地提高𝑘×𝑘块的压缩级别。
 >
 >我们描述了我们根据经验发现有效的方法（图7.3中的12(a)），这被称为基于置信度的步进（CS）方法。由于CGG是以一种有监督的方式进行训练的（4.4），它的置信度表示与压缩级别被正确识别的概率。
 >
->因此，我们设计基于置信的CLG到![image-20221203001715680](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203001715680.png)
+>因此，我们设计基于置信的CLG到![image-20221203001715680](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203001715680.png)
 >
 >具体来说，我们设置了一个置信度阈值𝜃𝑓和一个窗口长度Δ𝑤。
 >
@@ -481,11 +489,11 @@
 
 #### 5.3 DEMUX
 
->我们设计了DEMUX来寻找![image-20221203002127538](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002127538.png),DEMUX由五个轻量级组件组成CGG (§4.4), CLG (§5.2),latency predictor, memory predictor, and accuracy comparator.
+>我们设计了DEMUX来寻找![image-20221203002127538](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002127538.png),DEMUX由五个轻量级组件组成CGG (§4.4), CLG (§5.2),latency predictor, memory predictor, and accuracy comparator.
 >
->DEMUX的工作流程如图7所示。.给定𝑃∈P和𝑘∈K，CGG和CLG寻找矩阵的压缩级别![image-20221203002324663](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002324663.png)满足![image-20221203002342808](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002342808.png)在找到所有矩阵的压缩级别之后![image-20221203002428843](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002428843.png)
+>DEMUX的工作流程如图7所示。.给定𝑃∈P和𝑘∈K，CGG和CLG寻找矩阵的压缩级别![image-20221203002324663](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002324663.png)满足![image-20221203002342808](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002342808.png)在找到所有矩阵的压缩级别之后![image-20221203002428843](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002428843.png)
 >
->精度比较器选择![image-20221203002505081](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002505081.png)
+>精度比较器选择![image-20221203002505081](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203002505081.png)
 >
 >我们根据supernet中子网的压缩级别分析计算延迟和内存消耗。我们训练轻量级线性回归模型来预测一个supernet中的延迟和内存，以所有supernet中子网络的的压缩水平作为输入。
 >
@@ -499,10 +507,80 @@
 >
 >如图8 (b)所示，在准确性损失和退化分数之间有很强的相关性。
 >
->因此，我们可以离线分析每对(*𝑃,𝑘*)以及一个回归系数![image-20221203003559510](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003559510.png)。
+>因此，我们可以离线分析每对(*𝑃,𝑘*)以及一个回归系数![image-20221203003559510](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003559510.png)。
 >
->每对![image-20221203003645332](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003645332.png)精确度的损失可以通过![image-20221203003708531](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003708531.png)评估，以及我们选择![image-20221203003735411](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003735411.png)这有最低的精确度损失。
+>每对![image-20221203003645332](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003645332.png)精确度的损失可以通过![image-20221203003708531](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003708531.png)评估，以及我们选择![image-20221203003735411](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003735411.png)这有最低的精确度损失。
 >
->注意，对于每对![image-20221203003833096](C:\Users\19392\Desktop\myfile\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003833096.png)，我们观察到可忽略的精度损失when使用CGG选择的压缩级别来处理块。
+>注意，对于每对![image-20221203003833096](.\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203003833096.png)，我们观察到可忽略的精度损失when使用CGG选择的压缩级别来处理块。
+>
+>
+
+
+
+
+
+### **6 IMPLEMENTATION**
+
+>ARAC 的实现如下：
+>
+>测试台：用于设备上推理评估，我们选择了三种异构的移动/边缘设备：Jetson TX2; Xiaomi 6 Plus;Alienware 17 R3。
+>
+>第一台设备运行Linux Ubuntu 18.04 LTS，第二款设备运行安卓10.0系统，第三台设备运行Windows10。
+>
+>基础CNN模型、数据集和框架：
+>
+>我们主要评估在移动系统和边缘系统上的两个最重要的应用：(1)图像分类：我们基于三种流行的CNN模型 (ResNet50 [21], MobileNetV3 [25], and Inception-V3 [69])构建了ARAC supernet.我们使用ImageNet数据集[7]；
+>
+>(2)目标检测：我们基于最常用的模型(YOLOv3 [58])构建了ARAC supernet.我们使用COCO数据集
+>
+>使用pytorch 框架
+>
+>我们还在7.7节中评估了其他9个视觉应用程序
+
+
+
+**Baselines:**
+
+>我们选择了三种性能优于图1中其他方法的SOTA方法：
+>
+>(i) DS-Net [43]通过针对不同输入进行通道切片来调整层中过滤器的数量。ARAC supernet 和DS-Net关键的不同是：我们将输入图像分成更小的块，并且使用压缩子网络来处理他们，但是DS-Net是处理整个图像。
+>
+>MS-GFNet [30]动态地处理图像上的一系物品，直到预测有足够的置信度。虽然MS-FGnet设计了基于空间的CNN工作流，其操作减少导致了真正的加速，但由于顺序执行，其加速受到了限制
+>
+>iii）LegoDNN [19]通过切换重新训练的后代块来动态缩放DNNs。它通过过滤器剪枝离线生成块集。
+>
+>它将一个图像作为一个整体，并使用自适应选择的块尺度对其进行处理。
+>
+>注意：DS-Net和LegoDNN是用于动态推理的SOTA方法，没有基于空间冗余的加速度。
+>
+>MS-GFNet是一种基于空间冗余加速的SOTA方法。
+>
+>我们还比较的ARAC supernet 和SOTA模型压缩技术  in §7.4.
+
+**Candidate controllable parameters:**
+
+>我们设置了3个块大小，通过将图像分离成了![image-20221203100735259](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203100735259.png)
+>
+>我们 设置了5个压缩等级，使用压缩率![image-20221203101012833](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203101012833.png)注意压缩率代表这通道剪枝的比率，如拥有所有的通道代表使用压缩率1进行剪枝。
+>
+>对于ResNet50,我们设置了3个层数选择，：2个块(11层）、3个块(23层）和4个块(41层）
+>
+>For MobileNet-V3，,我们设置了2个层数选择：8层，13层
+>
+> For Inception-V3,我们设置了3个层数选择，七层，在第一个初始模块之后和第二个初始模块之后
+>
+>For YOLO-V3,我们在supernet中设置了三个层数选项：在第一个、第二个和第三个残差块之后。
+
+**Hyper-parameters in CLG**
+
+>我们研究了CLG（5.2）中这两个超参数的影响。
+>
+>根据经验，最佳设置是：
+>
+>![image-20221203101838856](C:\Users\bai\myflie\AI_compiler\移动端联邦学习\NeuLens Spatial-based Dynamic Acceleration of Convolutional  Neural Networks on Edge.assets\image-20221203101838856.png)
+
+**Compression guiding gate:**
+
+>在CGG中，编码器的卷积层
 >
 >
